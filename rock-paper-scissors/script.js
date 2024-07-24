@@ -35,6 +35,15 @@ function assessOutcome(playerChoice, computerChoice) {
     };
 };
 
+function processOutcome(outcome) {
+    pass;
+};
+
+function checkIfWinner() {
+    pass;
+};
+
+
 function play(userInput) {
     const playerChoice = userInput;
     const computerChoice = getComputerChoice();
