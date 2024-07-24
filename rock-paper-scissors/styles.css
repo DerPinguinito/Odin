@@ -1,0 +1,28 @@
+* {
+    font-family: sans-serif;
+}
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.results {
+    display: flex;
+    justify-content: space-between;
+}
+
+.options {
+    display: flex;
+    justify-content: space-between;
+}
+
+.rps {
+    margin-left: 0.5rem;
+    margin-right: 0.5rem;
+}
+
+.reset {
+    margin-left: 2rem;
+}

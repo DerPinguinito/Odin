@@ -143,8 +143,10 @@ function resetGame() {
 
 const BODY = document.querySelector("body");
 const GAME_DIV = document.createElement("div");
-const RESULTS_DIV = document.createElement("div");
+const RESULTS_DIV = document.createElement("div")
+RESULTS_DIV.classList.toggle("results");
 const OPTION_DIV = document.createElement("div");
+OPTION_DIV.classList.toggle("options");
 const ROUND_DIV = document.createElement("div");
 
 BODY.appendChild(GAME_DIV);
