@@ -1,7 +1,44 @@
 // this section deals with game functionality
+let userScore = 0;
+let computerScore = 0;
 
-function play(choice) {
-    console.log(choice);
+function getRandomNumber() {
+    return Math.floor(Math.random() * 3) + 1;
+};
+
+function getComputerChoice() {
+    const randomNumber = getRandomNumber();
+    
+    switch(true) {
+        case (randomNumber === 1):
+            return "rock";
+        case (randomNumber === 2):
+            return "paper";
+        default:
+            return "scissors";
+    };
+};
+
+function assessOutcome(playerChoice, computerChoice) {
+
+    switch(true) {
+        case (playerChoice === computerChoice):
+            return "draw";
+        case (playerChoice === "rock" && computerChoice === "scissors"):
+            return "winner";
+        case (playerChoice === "paper" && computerChoice === "rock"):
+            return "winner";
+        case (playerChoice === "scissors" && computerChoice === "paper"):
+            return "winner";
+        default:
+            return "loser";
+    };
+};
+
+function play(userInput) {
+    const playerChoice = userInput;
+    const computerChoice = getComputerChoice();
+    const outcome = assessOutcome(playerChoice, computerChoice);
 };
 
 // this section handles DOM manipulation
