@@ -36,7 +36,17 @@ function assessOutcome(playerChoice, computerChoice) {
 };
 
 function processOutcome(outcome) {
-    pass;
+    
+    switch(true) {
+        case (outcome === "winner"):
+            userScore++;
+            break;
+        case (outcome === "loser"):
+            computerScore++;
+            break;
+        default:
+            break;
+    };
 };
 
 function checkIfWinner() {
