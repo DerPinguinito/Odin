@@ -49,31 +49,37 @@ function updateScores() {
 
 function addScores(outcome) {
     
-    switch(true) {
-        case (outcome === "winner"):
+    switch(outcome) {
+        case ("winner"):
             userScore++;
-            updateScores();
             break;
-        case (outcome === "loser"):
+        case ("loser"):
             computerScore++;
-            updateScores;
             break;
         default:
             break;
     };
+
+    updateScores();
 };
 
 
-function checkIfWinner() {
+function disableButtons() {
+    const BUTTONS = document.querySelectorAll(".rps");
+    BUTTONS.forEach(button => {
+        button.disabled = true;
+    });
+};
+
+
+function checkForWinner() {
     
-    if (userScore < 5 && computerScore < 5) {
-        return;
-    } else if (userScore === 5) {
-        null // if user is the winner
-    } else {
-        null // if computer is the winner
-    }
-    
+    if (userScore >= 5) {
+        disableButtons();
+
+    } else if (computerScore >=5) {
+        disableButtons();
+    };
 };
 
 
@@ -108,6 +114,7 @@ function play(userInput) {
     const outcome = assessOutcome(playerChoice, computerChoice);
     displayOutcome(playerChoice, computerChoice, outcome);
     addScores(outcome);
+    checkForWinner();
 };
 
 
@@ -164,12 +171,12 @@ function createButtons() {
         const myButton = document.createElement("button");
 
         if (button !== "reset") { 
-            myButton.toggleAttribute("rps");
+            myButton.classList.toggle("rps");
             myButton.textContent = button;
             return myButton;
 
         } else {
-            myButton.toggleAttribute("reset");
+            myButton.classList.toggle("reset");
             myButton.textContent = button;
             return myButton;
         };
