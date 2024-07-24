@@ -72,13 +72,23 @@ function disableButtons() {
 };
 
 
+function enableButtons() {
+    const BUTTONS = document.querySelectorAll(".rps");
+    BUTTONS.forEach(button => {
+        button.disabled = false;
+    });
+};
+
+
 function checkForWinner() {
     
     if (userScore >= 5) {
         disableButtons();
+        alert("You win!")
 
     } else if (computerScore >=5) {
         disableButtons();
+        alert("You lose");
     };
 };
 
@@ -125,6 +135,7 @@ function resetGame() {
     updateScores();
     ROUND_NUMBER.textContent = '';
     DRAWS.textContent = '';
+    enableButtons();
 };
 
 
