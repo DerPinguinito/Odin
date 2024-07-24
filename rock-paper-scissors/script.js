@@ -1,107 +1,45 @@
-let playerScore = 0;
-let computerScore = 0;
+// this section deals with game functionality
 
-const DRAW_ALERT = "it's a draw";
-const WINNER_ALERT = "you win!";
-const LOSE_ALERT = "you lose!";
-
-
-function genRandom() {
-    return Math.floor(Math.random() * 3) + 1;
+function play(choice) {
+    console.log(choice);
 };
 
+// this section handles DOM manipulation
 
-function matchChoice(choiceNumber) {
-    switch(true) {
-        case (choiceNumber === 1):
-            return "rock";
-        case (choiceNumber === 2):
-            return "paper";
-        default:
-            return "scissors";
-    };
+const BODY = document.querySelector("body");
+const GAME_DIV = document.createElement("div");
+const OPTION_DIV = document.createElement("div");
+
+BODY.appendChild(GAME_DIV);
+GAME_DIV.appendChild(OPTION_DIV);
+
+// this section handles the button creation and their events
+
+function createButtons() {
+    let buttonList = ["rock", "paper", "scissors"];
+    
+    buttonList = buttonList.map((button) => {
+        const myButton = document.createElement("button");
+        myButton.textContent = button;
+        myButton.setAttribute("id", button);
+        return myButton;
+    });
+
+    return buttonList;
 };
 
-
-function getChoice(input) {
-    switch(true) {
-        case (input === 1):
-            return "rock";
-        case (input === 2):
-            return "paper";
-        default:
-            return "scissors";
-    };
+function setButtonListenerEvent(buttonObject) {
+    
+    buttonObject.addEventListener('click', () => {
+        play(buttonObject.textContent);
+    });
+    return buttonObject;
 };
 
+function appendButtons() {
+    let myButtons = createButtons();
+    myButtons = myButtons.map((button) => setButtonListenerEvent(button));
+    myButtons.forEach((button) => OPTION_DIV.appendChild(button));
+}
 
-function play(playerChoice) {
-    const P1 = playerChoice;
-    const P2 = matchChoice(genRandom());
-    let result = "";
-
-    switch(true) {
-        case (P1 === P2):
-            result = "draw";
-            alert(DRAW_ALERT);
-            break;
-        case (P1 === "rock" && P2 === "scissors"):
-            result = "win";
-            alert(WINNER_ALERT);
-            break;
-        case (P1 === "paper" && P2 === "rock"):
-            result = "win";
-            alert(WINNER_ALERT);
-            break;
-        case (P1 === "scissors" && P2 === "paper"):
-            result = "win";
-            alert(WINNER_ALERT);
-            break;
-        default:
-            result = "lose";
-            alert(LOSE_ALERT);
-            break;
-    };
-
-    switch(true) {
-        case (result === "draw"):
-            break;
-        case (result === "win"):
-            playerScore++;
-            break;
-        default:
-            computerScore++;
-            break;
-    };
-
-    checkWinner();
-};
-
-
-function checkWinner() {
-    if (playerScore < 5 && computerScore < 5) {
-        getInput();
-    } else if (playerScore === 5) {
-        alert("You're the winner!");
-        return;
-    } else {
-        alert("Computer wins!");
-        return;
-    };
-
-};
-
-function getInput() {
-    let input = prompt("Input 1 for Rock, 2 for Paper or 3 for Scissors");
-    input = parseInt(input);
-    if (input !== 1 && input !== 2 && input !== 3) {
-        alert("Please enter a valid option only");
-        getInput();
-    } else {
-        const CHOICE = getChoice(input);
-        play(CHOICE);
-    };
-
-};
-
-getInput();
+appendButtons();
