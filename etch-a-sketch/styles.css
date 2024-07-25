@@ -9,6 +9,16 @@ body {
     flex-direction: column;
 }
 
+#main {
+    display: flex;
+}
+
+.side {
+    border: 1px black solid;
+    padding: 2rem;
+    margin-right: 5rem;
+}
+
 #grid-div {
     border: 1px black solid;
     width: 500px;
@@ -25,6 +35,7 @@ body {
 .column {
     flex-grow: 1;
 }
+
 .active {
     background-color: black;
 }
