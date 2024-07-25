@@ -29,16 +29,24 @@ function createRows(amountOfRows) {
 };
 
 
+function setMouseOverEvent(columnObject) {
+
+    columnObject.addEventListener('mouseover', (e) => {
+        e.target.classList.toggle("active");
+    });
+};
+
+
 function createColumns(amountOfColumns, rowObject) {
     
     for (let i = 0; i < amountOfColumns; i++) {
         const COLUMN = document.createElement("div");
         COLUMN.classList.toggle("column");
-        COLUMN.textContent = i;
+        setMouseOverEvent(COLUMN);
         rowObject.appendChild(COLUMN);
     };
 
-    return rowObject
+    return rowObject;
 };
 
 
