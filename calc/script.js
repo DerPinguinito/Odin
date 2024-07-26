@@ -2,6 +2,10 @@ class Calculator {
 
     static startingValue = 0;
 
+    static operator = "";
+
+    static activeOperator = false;
+
     static add(a, b) {
         return a + b;
     };
@@ -23,9 +27,15 @@ class Calculator {
 class UI {
 
     constructor() {
+
         this.#createUI();
+
     };
     
+    static #value_1 = "";
+
+    static #value_2 = "";
+
     static #createMainSections() {
         const MAIN_DIV = document.createElement("div");
         MAIN_DIV.setAttribute("id", "main-div");
@@ -45,6 +55,7 @@ class UI {
     static #setScreen() {
         const SCREEN_DIV = document.getElementById("screen-div");
         const OPERATION_OUTPUT = document.createElement("p");
+        OPERATION_OUTPUT.setAttribute("id", "output")
         OPERATION_OUTPUT.textContent = 0;
 
         SCREEN_DIV.appendChild(OPERATION_OUTPUT);
@@ -58,8 +69,41 @@ class UI {
     };
 
     static #addEventListenerToButton(button) {
+        
         return button.addEventListener('click', (e) => {
-            console.log(e.target.textContent);
+
+            switch(true) {
+
+                case (!isNaN(e.target.textContent)):
+
+                    if (!Calculator.activeOperator) {
+                        UI.#value_1 += e.target.textContent;
+                    };
+
+                    break;
+
+                case (["+", "-", "*", "/"].includes(e.target.textContent)):
+                    
+                    if (Calculator.operator === "" || Calculator.operator != e.target.textContent) {
+                        Calculator.operator = e.target.textContent;
+                        Calculator.activeOperator = true;
+
+                    } else {
+                        Calculator.operator = "";
+                        Calculator.activeOperator = false;
+                    };
+
+                    console.log(Calculator.operator);
+                    console.log(Calculator.activeOperator);
+                    break;
+
+                default:
+                    break;
+            }
+
+            const OUTPUT = document.getElementById("output");
+            OUTPUT.textContent = UI.#value_1;
+
         });
     };
 
@@ -79,22 +123,22 @@ class UI {
         ROW_1.appendChild(buttons["%"]);
         ROW_1.appendChild(buttons["/"]);
 
-        ROW_2.appendChild(buttons["7"]);
-        ROW_2.appendChild(buttons["8"]);
-        ROW_2.appendChild(buttons["9"]);
-        ROW_2.appendChild(buttons["x"]);
+        ROW_2.appendChild(buttons[7]);
+        ROW_2.appendChild(buttons[8]);
+        ROW_2.appendChild(buttons[9]);
+        ROW_2.appendChild(buttons["*"]);
         
-        ROW_3.appendChild(buttons["4"]);
-        ROW_3.appendChild(buttons["5"]);
-        ROW_3.appendChild(buttons["6"]);
+        ROW_3.appendChild(buttons[4]);
+        ROW_3.appendChild(buttons[5]);
+        ROW_3.appendChild(buttons[6]);
         ROW_3.appendChild(buttons["-"]);
         
-        ROW_4.appendChild(buttons["1"]);
-        ROW_4.appendChild(buttons["2"]);
-        ROW_4.appendChild(buttons["3"]);
+        ROW_4.appendChild(buttons[1]);
+        ROW_4.appendChild(buttons[2]);
+        ROW_4.appendChild(buttons[3]);
         ROW_4.appendChild(buttons["+"]);
 
-        ROW_5.appendChild(buttons["0"]);
+        ROW_5.appendChild(buttons[0]);
         ROW_5.appendChild(buttons["."]);
         ROW_5.appendChild(buttons["="]);
         
@@ -114,7 +158,7 @@ class UI {
 
         UI.#setScreen();
 
-        let buttonList = ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "+", "-", "x", "/", "=", "C", "+/-", "%", "."];
+        let buttonList = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, "+", "-", "*", "/", "=", "C", "+/-", "%", "."];
         let buttonMap = {};
         
         buttonList.forEach(button => {
