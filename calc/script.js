@@ -89,7 +89,7 @@ class UI {
         ROW_4.appendChild(buttons["+"]);
 
         ROW_5.appendChild(buttons["0"]);
-        ROW_5.appendChild(buttons[","]);
+        ROW_5.appendChild(buttons["."]);
         ROW_5.appendChild(buttons["="]);
         
         BUTTON_AREA.appendChild(ROW_1);
@@ -108,7 +108,7 @@ class UI {
 
         UI.#setScreen();
 
-        let buttonList = ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "+", "-", "x", "/", "=", "C", "+/-", "%", ","];
+        let buttonList = ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "+", "-", "x", "/", "=", "C", "+/-", "%", "."];
         let buttonMap = {};
         
         buttonList.forEach(button => {
