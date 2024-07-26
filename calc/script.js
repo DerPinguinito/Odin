@@ -55,7 +55,13 @@ class UI {
         BUTTON.textContent = button;
         BUTTON.setAttribute("id", button);
         return BUTTON;
-    }
+    };
+
+    static #addEventListenerToButton(button) {
+        return button.addEventListener('click', (e) => {
+            console.log(e.target.textContent);
+        });
+    };
 
     static #setButtonArea(buttons) {
         const BUTTON_AREA = document.getElementById("button-div");
@@ -113,6 +119,7 @@ class UI {
         
         buttonList.forEach(button => {
             buttonMap[button] = UI.#createButton(button);
+            UI.#addEventListenerToButton(buttonMap[button]);
         });
         
         UI.#setButtonArea(buttonMap);
