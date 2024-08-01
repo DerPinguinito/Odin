@@ -147,8 +147,15 @@ class UI {
         BUTTON_AREA.appendChild(ROW_3);
         BUTTON_AREA.appendChild(ROW_4);
         BUTTON_AREA.appendChild(ROW_5);
-    }
+    };
 
+    static #setKeyboardInput(buttons) {
+
+        document.body.addEventListener('keypress', (e) => {
+            buttons[e.key].click();
+        });
+
+    };
 
     #createUI() {
         const BODY = document.querySelector("body");
@@ -167,6 +174,7 @@ class UI {
         });
         
         UI.#setButtonArea(buttonMap);
+        UI.#setKeyboardInput(buttonMap);
     };
 
 };
