@@ -4,11 +4,13 @@
         <meta charset="UTF-8">
         <title>Calculator || The Odin Project</title>
         <link rel="stylesheet" href="./styles.css">
+        <script type="module" src="./scripts/main.js"></script>
     </head>
     <body>
         <div class="main">
             <div class="screen-area">
-                <p class="display">0</p>
+                <p class="processing-numbers"><span id="digit-display"></span></p>
+                <p id="operation-output"></p>
             </div>
             <div class="button-area">
                 <div class="row">
@@ -21,13 +23,13 @@
                     <button id="7">7</button>
                     <button id="8">8</button>
                     <button id="9">9</button>
-                    <button id="x">X</button>
+                    <button id="*">X</button>
                 </div>
                 <div class="row">
                     <button id="4">4</button>
                     <button id="5">5</button>
                     <button id="6">6</button>
-                    <button id="-">+</button>
+                    <button id="-">-</button>
                 </div>
                 <div class="row">
                     <button id="1">1</button>
